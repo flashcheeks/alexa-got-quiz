@@ -32,7 +32,7 @@ module.exports = {
 
   progress: data => `Your progress has been saved.`,
 
-  stop: data => `Thanks for playing. Bye.`,
+  stop: data => `Thanks for playing. Goodbye.`,
 
   unknown: data =>
     `Sorry an error has occurred. Please try restarting the quiz.`,
