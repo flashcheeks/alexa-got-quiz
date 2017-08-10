@@ -4,16 +4,16 @@
 const AWS = require('aws-sdk');
 AWS.config.update({ region: 'eu-west-1' });
 
-// database client - set table name
+// database client
 const DynamoDB = new AWS.DynamoDB();
-const tableName = 'gotQuizTable';
 
 // language strings and helper
 const FuzzySet = require('fuzzyset.js');
 const lang = require('./lang/main')('en');
 
-// quiz data
+// quiz specific - data and table name
 const quizData = require('./data/game-of-thrones.json');
+const tableName = 'gotQuizTable';
 
 /*
  * 
@@ -27,15 +27,15 @@ const getContinueText = questionIndex => {
 
 const getFuzzyAnswer = (correct, match) => {
   const fuzzy = FuzzySet(correct);
-  const result = fuzzy.get(match);
-  const score = getFuzzyScore(result);
+  const results = fuzzy.get(match);
+  const score = getFuzzyScore(results);
   const debug = { correct: correct, match: match, score: score };
   console.log(JSON.stringify(debug));
   return score >= 0.6 ? true : false;
 };
 
-const getFuzzyScore = array => {
-  return Array.isArray(array) ? getMax(getFuzzyScores(array)) : 0;
+const getFuzzyScore = items => {
+  return Array.isArray(items) ? getMax(getFuzzyScores(items)) : 0;
 };
 
 const getFuzzyScores = array => {
@@ -97,21 +97,23 @@ const launchIntent = (data, callback) => {
   const continueText = getContinueText(questionIndex);
   const startText = lang.get('start');
   const text = [launchText, pleaseText, continueText, startText].join(' ');
-  callback(null, getBasicResponse(text, false));
+  const repeat = [pleaseText, continueText, startText].join(' ');
+  callback(null, getBasicResponse(text, repeat, false));
 };
 
 const startIntent = (data, callback) => {
   const beginText = getBeginText();
   const questionText = getQuestionText(0);
   const text = [beginText, questionText].join(' ');
-  callback(null, getBasicResponse(text, false));
+  const repeat = lang.get('repeat');
+  callback(null, getBasicResponse(text, repeat, false));
 };
 
 const continueIntent = (data, callback) => {
   const questionIndex = parseInt(getNestedProperty(data, 'Item.question.N'));
-  const questionText = getQuestionText(questionIndex);
-  const text = [questionText].join(' ');
-  callback(null, getBasicResponse(text, false));
+  const text = getQuestionText(questionIndex);
+  const repeat = lang.get('repeat');
+  callback(null, getBasicResponse(text, repeat, false));
 };
 
 const answerIntent = (data, callback) => {
@@ -119,7 +121,8 @@ const answerIntent = (data, callback) => {
   const nextText = lang.get('next');
   const questionText = getQuestionText(data.newQuestion);
   const text = [resultText, nextText, questionText].join(' ');
-  callback(null, getBasicResponse(text, false));
+  const repeat = lang.get('repeat');
+  callback(null, getBasicResponse(text, repeat, false));
 };
 
 const resultIntent = (data, callback) => {
@@ -128,7 +131,7 @@ const resultIntent = (data, callback) => {
   const scoreText = getScoreText(data.newScore);
   const stopText = lang.get('stop');
   const text = [resultText, finishedText, scoreText, stopText].join(' ');
-  callback(null, getBasicResponse(text, true));
+  callback(null, getBasicResponse(text, '', true));
 };
 
 /*
@@ -154,16 +157,16 @@ const setStartProgress = (event, callback) => {
 const getContinueProgress = (event, callback) => {
   const userId = getNestedProperty(event, 'session.user.userId');
   getFromDB(userId, function(err, data) {
-    err
+    err || Object.keys(data).length === 0
       ? errorIntent(err, 'getError', callback)
-      : continueIntent(data, event, callback);
+      : continueIntent(data, callback);
   });
 };
 
 const getAnswerProgress = (event, callback) => {
   const userId = getNestedProperty(event, 'session.user.userId');
   getFromDB(userId, function(err, data) {
-    err
+    err || Object.keys(data).length === 0
       ? errorIntent(err, 'getError', callback)
       : checkAnswerProgress(data, event, callback);
   });
@@ -291,41 +294,28 @@ const getFromDB = (userId, callback) => {
  */
 
 const cancelIntent = (event, callback) => {
-  console.log('cancelIntent');
-  console.log(JSON.stringify(event));
-
   const progressText = lang.get('progress');
   const pleaseText = lang.get('please');
   const continueText = getContinueText(1);
   const startText = lang.get('start');
   const text = [progressText, pleaseText, continueText, startText].join(' ');
-  callback(null, getBasicResponse(text, false));
+  const repeat = [pleaseText, continueText, startText].join(' ');
+  callback(null, getBasicResponse(text, repeat, false));
 };
 
 const helpIntent = (event, callback) => {
-  console.log('helpIntent');
-  console.log(JSON.stringify(event));
-
   const text = lang.get('help');
-  callback(null, getBasicResponse(text, false));
+  callback(null, getBasicResponse(text, text, false));
 };
 
 const stopIntent = (event, callback) => {
-  console.log('stopIntent');
-  console.log(JSON.stringify(event));
-
-  const progressText = lang.get('progress');
-  const stopText = lang.get('stop');
-  const text = [progressText, stopText].join(' ');
-  callback(null, getBasicResponse(text, true));
+  const text = lang.get('stop');
+  callback(null, getBasicResponse(text, '', true));
 };
 
 const unknownIntent = (event, callback) => {
-  console.log('unknownIntent');
-  console.log(JSON.stringify(event));
-
   const text = lang.get('unknown');
-  callback(null, getBasicResponse(text, false));
+  callback(null, getBasicResponse(text, '', false));
 };
 
 /*
@@ -337,7 +327,7 @@ const unknownIntent = (event, callback) => {
 const errorIntent = (err, messageStr, callback) => {
   console.log(err);
   const text = lang.get(messageStr);
-  callback(null, getBasicResponse(text, false));
+  callback(null, getBasicResponse(text, '', false));
 };
 
 /*
@@ -346,11 +336,12 @@ const errorIntent = (err, messageStr, callback) => {
  * 
  */
 
-const getBasicResponse = (text, shouldEnd) => {
+const getBasicResponse = (text, reprompt, shouldEnd) => {
   return {
     version: '1.0',
     response: {
       outputSpeech: { type: 'PlainText', text: text },
+      reprompt: { outputSpeech: { type: 'PlainText', text: reprompt } },
       shouldEndSession: shouldEnd,
     },
   };
@@ -371,8 +362,3 @@ const getNestedProperty = (obj, props) => {
 const getMax = array => {
   return Math.max.apply(Math, array);
 };
-
-// TODO handle all response
-// TODO randomise multiple strings
-// TODO dynamic quizData and tableName
-// TODO handle empty response

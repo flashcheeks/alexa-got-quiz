@@ -18,8 +18,6 @@ Copy `.env.sample.json` to `.env.json` and fill in the values.
 For Lambda, `handler.js` handles core requests and passes them to the main app in `app/main.js`. You can run this locally without Lambda by using the `tester.js`. Build an Alexa JSON object in that file, and run it as follows:
 
     $ npm run demo
-    or
-    $ serverless offline start
 
 
 ## Deployment
@@ -27,8 +25,6 @@ For Lambda, `handler.js` handles core requests and passes them to the main app i
 The skill is deployed to AWS Lambda via Serverless. Configure Serverless in the `serverless.yml` file, and deploy by running:
 
     $ npm run deploy
-    or
-    $ serverless deploy
 
 _See the Serverless docs for additional deployment commands._
 

@@ -1,9 +1,9 @@
 {
   "launch": "Welcome to the hardest Game of Thrones quiz ever!",
-  "begin": "The quiz has ten questions to test your Game of Thrones knowledge. Let's get started.",
+  "begin": "The quiz has ten questions to test your Game of Thrones knowledge. Let's get started. Good luck.",
   "questions": [
     {
-      "question": "Robb Stark’s wife, Talisa Maegyr, was raised in which free city?",
+      "question": "Robb Stark’s wife, Talisa Maegyr, was raised in which free city",
       "answer": ["Volantis"],
       "reveal": "She was raised in Volantis. She vowed never to live in a slave city, and relocated to Westeros."
     },
