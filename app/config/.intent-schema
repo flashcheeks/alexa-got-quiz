@@ -1,0 +1,45 @@
+{
+  "intents": [
+    {
+      "intent": "StartIntent"
+    },
+    {
+      "intent": "ContinueIntent"
+    },
+    {
+      "intent": "RepeatIntent"
+    },
+
+    {
+      "slots": [
+        {
+          "name": "CatchAll",
+          "type": "CATCHALL"
+        }
+      ],
+      "intent": "CatchAllIntent"
+    },
+    
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.StartOverIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    }
+  ]
+}

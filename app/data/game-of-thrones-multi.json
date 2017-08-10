@@ -1,0 +1,61 @@
+{
+  "questions": [
+    {
+      "question": "In which of the Free Cities was Robb Stark’s wife, Talisa Maegyr, raised?",
+      "anwsers": [
+        {
+          "answer": "Braavos."
+        },
+        {
+          "answer": "Pentos."
+        },
+        {
+          "answer": "Lys."
+        },
+        {
+          "answer": "Volantis.",
+          "correct": true
+        }
+      ],
+      "reveal": "Talisa Maegyr was raised in Volantis. Inspired by a slave who saved her little brother from drowning, Talisa vowed never to live in a slave city again, and relocated to Westeros."
+    },
+    {
+      "question": "Which of the following kingdoms did the Andals fail to conquer during their invasion of Westeros?",
+      "anwsers": [
+        {
+          "answer": "The North.",
+          "correct": true
+        },
+        {
+          "answer": "Dorne."
+        },
+        {
+          "answer": "The Iron Islands."
+        },
+        {
+          "answer": "The Reach."
+        }
+      ],
+      "reveal": "The Andals did not conquer The North. A number of Andal armies were thrown back by the Crannogmen of the Neck, Meera and Jojen Reed’s ancestors."
+    },
+    {
+      "question": "Who gives Tyrion his facial scar during the Battle of the Blackwater?",
+      "anwsers": [
+        {
+          "answer": "Amory Lorch."
+        },
+        {
+          "answer": "Meryn Trant."
+        },
+        {
+          "answer": "Mandon Moore.",
+          "correct": true
+        },
+        {
+          "answer": "Boros Blount."
+        }
+      ],
+      "reveal": "Mandon Moore gave Tyrion his facial scar. It’s implied in series 3 that Joffrey ordered Mandon Moore, a member of the Kingsguard, to kill Tyrion on the battlefield"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+
+StartIntent start game
+StartIntent start new game
+StartIntent start a new game
+
+ContinueIntent continue game
+ContinueIntent continue a game
+
+RepeatIntent repeat question
+RepeatIntent repeat the question
+
+CatchAllIntent {CatchAll}

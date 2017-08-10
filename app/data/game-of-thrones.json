@@ -1,0 +1,57 @@
+{
+  "launch": "Welcome to the hardest Game of Thrones quiz ever!",
+  "begin": "The quiz has ten questions to test your Game of Thrones knowledge. Let's get started.",
+  "questions": [
+    {
+      "question": "Robb Stark’s wife, Talisa Maegyr, was raised in which free city?",
+      "answer": ["Volantis"],
+      "reveal": "She was raised in Volantis. She vowed never to live in a slave city, and relocated to Westeros."
+    },
+    {
+      "question": "Yoren, the Night’s Watchman, tells Arya about his longstanding grudge against the man who killed his brother. What was the name of the man who killed Yoren’s brother?",
+      "answer": ["Willem"],
+      "reveal": "Willem killed Yoren’s brother. Yoren had his revenge when Willem returned to his hometown years later."
+    },
+    {
+      "question": "Who gives Tyrion his facial scar during the Battle of the Blackwater?",
+      "answer": ["Mandon Moore", "Moore"],
+      "reveal": "Mandon Moore gave Tyrion his facial scar. Joffrey ordered Moore, a member of the Kingsguard, to kill Tyrion on the battlefield."
+    },
+    {
+      "question": "We meet three of Oberyn Martell’s daughters, known as the Sand Snakes. How many does he have in total?",
+      "answer": ["Eight", "8"],
+      "reveal": "Oberyn mentions his eight, illegitimate daughters to Cersei in Series 4."
+    },
+    {
+      "question": "Which of the following houses only became one of the Great Houses of Westeros after Aegon Targaryen's invasion?",
+      "answer": ["House Tyrell", "Tyrell"],
+      "reveal": "House Tyrell became one of the Great Houses of Westeros, but before Aegon Targaryen’s conquest, House Gardener ruled the Reach."
+    },
+    {
+      "question": "King Joffrey gave Harrenhal, to Petyr Baelish, but who previously had royal title to it?",
+      "answer": ["Janos Slynt", "Janos", "Slynt"],
+      "reveal": "Tyrion dispossesses Lord Janos Slynt of Harrenhal, when he ships him to the Wall in series 2."
+    },
+    {
+      "question": "The Faith Militant caused a lot of problems for Cersei. Under the reign of which Targaryen king were they last active?",
+      "answer": ["Jaehaerys", "Ja harris"],
+      "reveal": "Jaehaerys, known as “the Conciliator”, cut a deal with the Faith Militant and disbanded them."
+    },
+    {
+      "question": "In the first episode of series 5, a young Cersei visits a woods witch. What is the name of the friend who accompanies her?",
+      "answer": ["Melara Hetherspoon", "Melara", "Hetherspoon"],
+      "reveal": "In the Game of Thrones books Cersei visits the witch with two friends, but in the TV show it’s just Melara Hetherspoon."
+    },
+    {
+      "question": "There are 19 castles along the Wall. To which one does Jon Snow try to send Janos Slynt in series 5?",
+      "answer": ["Greyguard", "Grey guard"],
+      "reveal": "The castle is Greyguard. Janos Slynt refuses to go, so Jon Snow beheads him."
+    },
+    {
+      "question": "After the Greyjoy Rebellion, who did Jorah Mormont defeat to win the tournament at Lannisport?",
+      "answer": ["Jaime Lannister", "Jaime"],
+      "reveal": "Jorah defeated Jaime Lannister, and married Lynesse Hightower shortly afterwards."
+    }
+  ],
+  "score": "Out of ten questions you scored {{score}} correct."
+}

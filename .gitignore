@@ -1,0 +1,10 @@
+.npmignore
+node_modules
+
+.DS_Store
+
+.serverless/
+.env.json
+env.yml
+dist
+coverage
