@@ -240,8 +240,8 @@ module.exports = {
       case 'CatchAllIntent':
         getAnswerProgress(event, callback);
         return;
-
-      case 'AMAZON.CancelIntent':
+      //
+      //case 'AMAZON.CancelIntent': // moved this intent to stop
       case 'AMAZON.PauseIntent':
         cancelIntent(event, callback);
         return;
@@ -250,6 +250,7 @@ module.exports = {
         helpIntent(event, callback);
         return;
 
+      case 'AMAZON.CancelIntent':
       case 'AMAZON.StopIntent':
         stopIntent(event, callback);
         return;

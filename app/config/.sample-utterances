@@ -1,11 +1,17 @@
 
+StartIntent start
 StartIntent start game
+StartIntent start quiz
 StartIntent start new game
+StartIntent start new quiz
 StartIntent start a new game
 
+ContinueIntent continue
 ContinueIntent continue game
+ContinueIntent continue quiz
 ContinueIntent continue a game
 
+RepeatIntent repeat
 RepeatIntent repeat question
 RepeatIntent repeat the question
 
